@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bureau of Organization</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        a { text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .header-bar {
+            background-color: #000066;
+            padding: 5px 10px;
+            text-align: center;
+        }
+        .header-bar a { color: #ffffff; }
+        .logo-area {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #ffffff;
+        }
+        .logo-area img {
+            width: 400px;
+            height: 90px;
+            background-color: #cccccc;
+            border: 1px solid #999999;
+        }
+        .tagline {
+            background-color: #000066;
+            color: #ffffff;
+            padding: 3px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .tagline a { color: #ffffff; }
+        .search-bar {
+            background-color: #cccccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .search-bar input[type="text"] {
+            width: 300px;
+            padding: 3px;
+        }
+        .search-bar select {
+            padding: 3px;
+        }
+        .search-bar input[type="submit"] {
+            padding: 3px 10px;
+        }
+        .main-content {
+            width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .highlight-bar {
+            background-color: #ffcccc;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .highlight-bar a { color: #0000cc; }
+        .top-links {
+            background-color: #ffffcc;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .top-links a { color: #0000cc; }
+        .two-column {
+            display: table;
+            width: 100%;
+        }
+        .left-column {
+            display: table-cell;
+            width: 65%;
+            vertical-align: top;
+            padding-right: 10px;
+        }
+        .right-column {
+            display: table-cell;
+            width: 35%;
+            vertical-align: top;
+            background-color: #ffffcc;
+            padding: 10px;
+        }
+        .category {
+            margin-bottom: 15px;
+        }
+        .category-header {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000066;
+            border-bottom: 1px solid #000066;
+            margin-bottom: 5px;
+        }
+        .category-header a { color: #000066; }
+        .category-links {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .category-links a { color: #0000cc; }
+        .xtra {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .right-section {
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        .right-section-header {
+            font-weight: bold;
+            color: #000066;
+            border-bottom: 1px solid #000066;
+            margin-bottom: 5px;
+        }
+        .right-section a { color: #0000cc; }
+        .sidebar-promo {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .sidebar-promo img {
+            width: 100%;
+            height: 60px;
+            background-color: #cccccc;
+            border: 1px solid #999999;
+        }
+        .footer {
+            background-color: #cccccc;
+            padding: 15px;
+            text-align: center;
+            font-size: 11px;
+            margin-top: 20px;
+        }
+        .footer a { color: #0000cc; }
+        .footer-section {
+            margin-bottom: 10px;
+        }
+        .world-section {
+            background-color: #ffffcc;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 11px;
+        }
+        .world-section a { color: #0000cc; }
+        .metro-section {
+            background-color: #ffffcc;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 11px;
+        }
+        .metro-section a { color: #0000cc; }
+        .personal-bar {
+            background-color: #eeeeee;
+            padding: 5px;
+            text-align: center;
+            font-size: 12px;
+            border-bottom: 1px solid #999999;
+        }
+        .personal-bar a { color: #0000cc; }
+    </style>
+</head>
+<body>
+
+<div class="personal-bar">
+    <a href="#">My Bureau!</a> | 
+    <a href="#">Bureau of Organization for Kids</a> | 
+    <a href="#">Beatrice's Web Guide</a> | 
+    <a href="#">Bureau! Internet Life</a>
+</div>
+
+<div class="header-bar">
+    <a href="#">Add a Site</a> | <a href="#">Company</a> | <a href="#">Contributors</a>
+</div>
+
+<div class="logo-area">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='90'%3E%3Crect fill='%23000066' width='400' height='90'/%3E%3Ctext fill='white' font-family='serif' font-size='48' x='50' y='60'%3EBureau of Organization%3C/text%3E%3C/svg%3E" alt="Bureau of Organization">
+</div>
+
+<div class="tagline">
+    <a href="#">options</a> | Search: 
+    <a href="#">Yellow Pages</a> - 
+    <a href="#">People Search</a> - 
+    <a href="#">Maps</a> - 
+    <a href="#">Classifieds</a> - 
+    <a href="#">News</a> - 
+    <a href="#">Stock Quotes</a> - 
+    <a href="#">Sports Scores</a>
+</div>
+
+<div class="search-bar">
+    <form action="#" method="get">
+        <input type="text" name="p" value="">
+        <select name="t">
+            <option value="">Web</option>
+            <option value="">Categories</option>
+        </select>
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+<div class="main-content">
+
+<div class="highlight-bar">
+    <a href="#">Win a Viper!</a> | <a href="#">MLB Playoffs</a> | <a href="#">Pamela Lee Speaks Out</a>
+</div>
+
+<div class="top-links">
+    <a href="#">Weekly Picks</a> | <a href="#">Today's Web Events</a> | <a href="#">Chat</a> | <a href="#">Weather Forecasts</a>
+</div>
+
+<div class="two-column">
+    <div class="left-column">
+        
+        <div class="category">
+            <div class="category-header"><a href="#">Arts and Humanities</a></div>
+            <div class="category-links">
+                <a href="#">Architecture</a>, <a href="#">Photography</a>, <a href="#">Literature</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Business and Economy</a> <span class="xtra">[Xtra!]</span></div>
+            <div class="category-links">
+                <a href="#">Companies</a>, <a href="#">Investing</a>, <a href="#">Employment</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Computers and Internet</a> <span class="xtra">[Xtra!]</span></div>
+            <div class="category-links">
+                <a href="#">Internet</a>, <a href="#">WWW</a>, <a href="#">Software</a>, <a href="#">Multimedia</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Education</a></div>
+            <div class="category-links">
+                <a href="#">Universities</a>, <a href="#">K-12</a>, <a href="#">College Entrance</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Entertainment</a> <span class="xtra">[Xtra!]</span></div>
+            <div class="category-links">
+                <a href="#">Cool Links</a>, <a href="#">Movies</a>, <a href="#">Music</a>, <a href="#">Humor</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Government</a></div>
+            <div class="category-links">
+                <a href="#">Military</a>, <a href="#">Politics</a> <span class="xtra">[Xtra!]</span>, <a href="#">Law</a>, <a href="#">Taxes</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Health</a> <span class="xtra">[Xtra!]</span></div>
+            <div class="category-links">
+                <a href="#">Medicine</a>, <a href="#">Drugs</a>, <a href="#">Diseases</a>, <a href="#">Fitness</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">News and Media</a> <span class="xtra">[Xtra!]</span></div>
+            <div class="category-links">
+                <a href="#">Current Events</a>, <a href="#">Magazines</a>, <a href="#">TV</a>, <a href="#">Newspapers</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Recreation and Sports</a> <span class="xtra">[Xtra!]</span></div>
+            <div class="category-links">
+                <a href="#">Sports</a>, <a href="#">Games</a>, <a href="#">Travel</a>, <a href="#">Autos</a>, <a href="#">Outdoors</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Reference</a></div>
+            <div class="category-links">
+                <a href="#">Libraries</a>, <a href="#">Dictionaries</a>, <a href="#">Phone Numbers</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Regional</a></div>
+            <div class="category-links">
+                <a href="#">Countries</a>, <a href="#">Regions</a>, <a href="#">U.S. States</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Science</a></div>
+            <div class="category-links">
+                <a href="#">CS</a>, <a href="#">Biology</a>, <a href="#">Astronomy</a>, <a href="#">Engineering</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Social Science</a></div>
+            <div class="category-links">
+                <a href="#">Anthropology</a>, <a href="#">Sociology</a>, <a href="#">Economics</a>...
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header"><a href="#">Society and Culture</a></div>
+            <div class="category-links">
+                <a href="#">People</a>, <a href="#">Environment</a>, <a href="#">Religion</a>...
+            </div>
+        </div>
+
+    </div>
+
+    <div class="right-column">
+        
+        <div class="sidebar-promo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='60'%3E%3Crect fill='%23cccccc' width='200' height='60'/%3E%3Ctext fill='%23666' font-family='sans-serif' font-size='12' x='10' y='35'%3E[Advertisement]%3C/text%3E%3C/svg%3E" alt="Advertisement">
+        </div>
+
+        <div class="right-section">
+            <div class="right-section-header">Featured Sites</div>
+            <a href="#">Visa Shopping Guide</a><br>
+            <a href="#">Random Bureau! Link</a><br>
+            <a href="#">Bureau! Store</a>
+        </div>
+
+        <div class="right-section">
+            <div class="right-section-header">Bureau! Metros</div>
+            <a href="#">Get Local</a><br>
+            <br>
+            <a href="#">Atlanta</a> - <a href="#">Austin</a> - <a href="#">Boston</a><br>
+            <a href="#">Chicago</a> - <a href="#">Dallas/Fort Worth</a> - <a href="#">Los Angeles</a><br>
+            <a href="#">Miami</a> - <a href="#">Minneapolis/St. Paul</a> - <a href="#">New York</a><br>
+            <a href="#">S.F. Bay</a> - <a href="#">Seattle</a> - <a href="#">Wash D.C.</a>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<div class="world-section">
+    <strong>World Bureaus</strong><br>
+    <a href="#">Australia & N.Z.</a> - 
+    <a href="#">Canada</a> - 
+    <a href="#">France</a> - 
+    <a href="#">Germany</a> - 
+    <a href="#">Japan</a> - 
+    <a href="#">Korea</a> - 
+    <a href="#">U.K. & Ireland</a>
+</div>
+
+<div class="footer">
+    <div class="footer-section">
+        <a href="#">How to Suggest a Site</a> | 
+        <a href="#">Company Information</a> | 
+        <a href="#">Contributors</a> | 
+        <a href="#">Bureau! to Go</a>
+    </div>
+    <div class="footer-section">
+        Copyright &copy; 1997 Bureau of Organization. All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>

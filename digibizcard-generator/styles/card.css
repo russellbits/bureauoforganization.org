@@ -1,0 +1,212 @@
+/* Colors to change */
+:root {
+    --color-primary: rgba(12, 90, 194, 1);
+    --color-secondary: rgba(200, 219, 255, 1);
+}
+
+@font-face {
+    font-family: "League Gothic";
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/League-Gothic/LeagueGothic-Regular.woff2) format("woff2"),
+         url(../fonts/League-Gothic/LeagueGothic-Regular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "League Gothic";
+    font-style: italic;
+    font-weight: 700;
+    src: url(../fonts/League-Gothic/LeagueGothic-Italic.woff2) format("woff2"),
+         url(../fonts/League-Gothic/LeagueGothic-Italic.woff) format("woff");
+}
+
+@font-face {
+    font-family: "League Gothic Condensed";
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/League-Gothic/LeagueGothic-CondensedRegular.woff2) format("woff2"),
+         url(../fonts/League-Gothic/LeagueGothic-CondensedRegular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "League Gothic Condensed Italic";
+    font-style: italic;
+    font-weight: 700;
+    src: url(../fonts/League-Gothic/LeagueGothic-CondensedItalic.woff2) format("woff2"),
+         url(../fonts/League-Gothic/LeagueGothic-CondensedItalic.woff) format("woff");
+}
+
+@font-face {
+    font-family: Entypo;
+    src: url(../fonts/Entypo/entypo.woff) format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 18px;
+    background: var(--color-primary);
+    background: radial-gradient(circle at center top,var(--color-secondary) -10%, var(--color-primary) 69%);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+nav.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 25px;
+    margin: 0;
+    background-color: black;
+}
+
+nav.top > a {
+    display: block;
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+}
+
+nav.top > a > img {
+    width: 25px;
+    height: 25px;
+}
+
+nav.top > a > img.off {
+    opacity: 33%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 338px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+div.cardCarousel {
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    justify-content: flex-start;
+    margin: 0 auto;
+    transform: translateX(0);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+div.card {
+    background-color: #ffffff;
+    border-radius: 1em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+    margin: 1em;
+    min-width: 300px;
+    width: 90%;
+}
+
+div.card > div.text {
+    padding: 0.5em;
+}
+
+div.card.id > figure {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+div.card.id > figure > img {
+    width: 100%;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+div.card.qr > figure {
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+div.card.qr > figure > img {
+    width: 90%;
+    padding: 0;
+    margin: 0;
+}
+
+div.card > div.text > h1 {
+    color: var(--color-primary);
+    font-family: "League Gothic", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 2em;
+    text-align: center;
+    margin: 0;
+}
+
+div.card > div.text > h2 {
+    font-family: "League Gothic", sans-serif;
+    font-size: 1.2em;
+    font-weight: 200;
+    font-style: normal;
+    text-align: center;
+    margin: 0;
+}
+
+nav.inline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0;
+    padding: 0;
+}
+
+nav.inline > div.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    border: 1px solid white;
+    color:  white;
+    background-color: var(--color-primary);
+    border-radius: 25px;
+    margin: 0 0 0.7em 0;
+    padding: 5px;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+}
+
+nav.inline > div.button > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    font-family: "Trebuchet MS","Helvetica", sans-serif;
+    font-size: 1em;
+    font-weight: 200;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    color:  white;
+}
+
+nav.inline > div.button > a > img {
+    display: block;
+    margin-right: 6px;
+}
+
+nav.inline > div.button > a > label {
+    display: block;
+}
+
+p {
+    font-family: "Helvetica", sans-serif;
+    font-size: 1em;
+}

@@ -1,0 +1,7 @@
+/vendor/
+.phpunit.result.cache
+.env
+/bookmarks/
+/cloud/
+/digibuzcard-generator/
+/telepathy/
