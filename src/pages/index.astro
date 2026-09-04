@@ -1,17 +1,114 @@
 ---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro'
+import CategoryBlock from '@components/CategoryBlock.astro'
+import FeaturedWebSite from '@components/FeaturedWebSite.astro'
 
+// Fetch the clean array of category entries directly
+const categoriesData = await getCollection('categories');
+const aiCategory = categoriesData.find(item => item.id === 'ai-machine-learning');
+const newsMediaCategory = categoriesData.find(item => item.id === 'news-and-media');
+const development = categoriesData.find(item => item.id === 'development');
 ---
+<Layout>
+    <main id="masonry-grid">
+        <div class="card">
+            <a href="https://neal.fun"><img src='/images/ad-neal-fun.png' width="538" height="234" /></a>
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'habitica'} />
+        </div>
+        <div class="card">
+            {aiCategory ? ( <CategoryBlock category={aiCategory.data} /> ) : ( <p>Category not found!</p> )}
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'eggman'} />
+        </div>
+        <div class="card">
+            <a href="https://banapana.com"><img src='/images/ad-banapana.png' width="538" height="234" /></a>
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'look-busy'} />
+        </div>
+        <div class="card">
+            {newsMediaCategory ? ( <CategoryBlock category={newsMediaCategory.data} /> ) : ( <p>Category not found!</p> )}
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'the-oatmeal'} />
+        </div>
+        <div class="card">
+            {development ? ( <CategoryBlock category={development.data} /> ) : ( <p>Category not found!</p> )}
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'game-theory-arcade'} />
+        </div>
+    </main>
+</Layout>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<style>
+#masonry-grid {
+    position: relative;
+    width: 100%;
+  }
+
+.card {
+    position: absolute;
+    max-width: 250px;
+    background-color: #bdbdbd;
+    padding: 0 1rem;
+    margin: 0;
+    border: 1px dotted gray;
+    box-shadow: 14px 15px 0px 0px rgba(96, 96, 96, 1.00);
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.card img {
+    max-width: 250px;
+    height: auto;
+}
+
+.card.list {
+    width: 250px;
+}
+
+.card.slate {
+    background-color: #333;
+}
+</style>
+
+<script>
+import MiniMasonry from 'minimasonry';
+
+function initMasonry() {
+  const grid = document.getElementById('masonry-grid');
+  if (!grid) return;
+
+  const masonry = new MiniMasonry({
+    container: grid,
+    baseWidth: 250,
+    gutter: 30,
+    gutterY: 30,
+    surround: false,
+    ultimateGutter: 20
+  });
+
+  // Initial layout
+  masonry.layout();
+
+  // Fix 1: Trigger layout after all images load
+  const images = grid.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.complete) return;
+    img.addEventListener('load', () => masonry.layout());
+  });
+
+  // Fix 2: Trigger layout after custom web fonts finish rendering
+  if ('fonts' in document) {
+    document.fonts.ready.then(() => masonry.layout());
+  }
+}
+
+initMasonry();
+document.addEventListener('astro:page-load', initMasonry);
+</script>

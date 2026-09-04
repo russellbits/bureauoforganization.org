@@ -1,0 +1,34 @@
+- id: 'ebay'
+  label: 'Buy My Crap!'
+  description: "Old stuff I don't need anymore."
+  url: https://www.ebay.com/usr/ruzel2003
+  tags:
+    - stuff
+    - junk
+    - garage sale
+- id: 'habitica'
+  label: 'My Habitica!'
+  description: "Goofy productivity game that's fun for everyone."
+  url: https://habitica.com/profile/c564eb58-83a1-490b-8760-642cce9cf5b7
+  tags:
+    - relevant
+    - television
+    - game
+- id: 'russllbits'
+  label: 'The Russellbits!'
+  description: "The home and clubhouse of one Russell Warner"
+  url: https://russellbits.com
+  tags:
+    - Russell_Warner
+- id: 'bureau_for_kids'
+  label: 'Bureau of Organization for Kids'
+  description: "Something *really* fun fort he kids!"
+  url: https://www.perplexity.ai/search/what-is-a-web-site-online-that-9PAbyt7wQXm3tox5fSxSlA#1
+  tags:
+    - kids
+- id: 'extraction_class'
+  label: "Read About the Extraction Class"
+  description: "Yes, they're stealing your money!"
+  url: https://en.wikipedia.org/wiki/Real_wages
+  tags:
+    - extraction_class

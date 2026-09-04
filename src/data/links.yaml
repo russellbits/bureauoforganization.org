@@ -1,0 +1,213 @@
+- id: 'ai-machine-learning'
+  name: 'AI & Machine Learning'
+  links:
+    -
+      label: '"Information Theory, Inference, and Learning Algorithms" by David MacKay'
+      desc: 'A unified, application-driven introduction to how probability, entropy, coding, and Bayesian inference explain data compression, reliable communication, and machine learning methods'
+      url: 'http://www.inference.org.uk/itila/book.html'
+    -
+      label: 'Huggingface'
+      desc: 'Models, Datasets and Other AI Tools'
+      url: 'https://huggingface.co'
+    -
+      label: 'Beatoven'
+      desc: 'AI Music Generator'
+      url: 'https://www.beatoven.ai'
+    -
+      label: 'Conceptnet'
+      desc: 'An open, multilingual knowledge graph'
+      url: 'https://conceptnet.io'
+    -
+      label: 'Agent Skills Marketplace'
+      desc: 'Explore public GitHub SKILL.md examples to discover unfamiliar uses or gather references before shaping a Skill of your own'
+      url: 'https://skillsmp.com'
+
+- id: 'unsorted'
+  name: 'Unsorted'
+  links:
+    -
+      label: '.:: PoeticTerror.Com ::.'
+      url: 'http://www.poeticterror.com/exp/'
+    -
+      label: '(6) Banapanazine (@banapanazine) • Threads, Say more'
+      url: 'https://www.threads.com/@banapanazine'
+    -
+      label: '[adult swim]'
+      url: 'http://www.adultswim.com/'
+    -
+      label: "`Shizzle' has fizzled"
+      url: 'http://www.chass.utoronto.ca/~ikalmar/100/shiznit.htm'
+    -
+      label: '| wreck this journal'
+      url: 'http://wreckthisjournal.com/'
+
+- id: 'tools'
+  name: 'Tools'
+  links:
+    -
+      label: '.htpasswd Generator Tool Crypts together any Username and Password for Apache'
+      url: 'http://www.askapache.com/online-tools/htpasswd-generator/'
+    -
+      label: 'Araelium Group : Querious - MySQL Database Tool'
+      url: 'http://www.araelium.com/querious/'
+    -
+      label: 'Banana-based Length &amp; Distance Unit Converter | Convert To Bananas'
+      url: 'https://www.converttobananas.com/'
+    -
+      label: BWToolkit
+      url: 'http://brandonwalkin.com/bwtoolkit/'
+    -
+      label: 'Connect our SMS gateway to your application or web service | sms web service'
+      url: 'http://www.mobilemarketing.net/Api.aspx'
+
+- id: 'news-and-media'
+  name: 'News & Media'
+  links:
+    -
+      label: 'Breaking Points'
+      url: 'https://www.youtube.com/c/breakingpoints/videos'
+      desc: 'Well-rounded, fearless and anti-establishment'
+    -
+      label: 'Hacker News'
+      url: 'https://news.ycombinator.com'
+      desc: "All the news that's fit to scan"
+    -
+      label: 'Substack'
+      url: 'https://substack.com'
+      desc: 'Independent Voices'
+    -
+      label: 'Slashdot'
+      url: 'https://slashdot.org'
+      desc: 'The original Reddit'
+    -
+      label: 'Ground.news'
+      url: 'https://ground.news'
+      desc: 'Every side of every news story'
+
+- id: 'development'
+  name: 'Handy Web Development Tools'
+  links:
+    -
+      label: "Can I Use?"
+      url: "https://caniuse.com"
+      desc: '"Can I use" provides up-to-date browser support tables for support of front-end web technologies on desktop and mobile web browsers.'
+    -
+      label: 'Big List of Free and Open Public APIs (No Auth Needed)'
+      url: 'https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/'
+      desc: "A useful list of Application Protocol Interfaces (APIs) with no auth for testing and experiments."
+    -
+      label: 'Color Picker'
+      url: 'https://htmlcolorcodes.com/color-picker/'
+      desc: "Great tool for exploring palettes and harmonies"
+    -
+      label: 'Typescale'
+      url: 'https://typescale.com'
+      desc: "Excellent tool for exploring typography and harmonic type systems."
+    -
+      label: 'CSS Button Generator'
+      url: 'https://www.bestcssbuttongenerator.com/#/1'
+      desc: "The old school way of crafting CTA buttons"
+
+
+- id: 'fun-js-libs'
+  name: 'Fun Javascript Libraries'
+  links:
+    -
+      label: '2D Physics engine'
+      url: 'https://brm.io/matter-js/'
+      desc: 'Matter.js is a 2D physics engine for the web'
+
+- id: 'entertainment'
+  name: 'Entertainment'
+  links:
+    -
+      label: '|| | www.micromusic.net | ||'
+      url: 'http://www.micromusic.net/'
+    -
+      label: '11 tools for music discovery (and additional resources)'
+      url: 'https://splice.com/blog/tools-music-discovery/'
+    -
+      label: '1995 in music - Wikipedia, the free encyclopedia'
+      url: 'http://en.wikipedia.org/wiki/1995_in_music'
+    -
+      label: '40 Best Country and Americana Albums of 2019'
+      url: 'https://www.rollingstone.com/music/music-country-lists/40-best-country-and-americana-albums-of-2019-920497/maren-morris-girl-3-920538/'
+    -
+      label: 'AdForum: Advertising Agencies, TV Commercials, Commercial Ads, Award Winning Ads'
+      url: 'http://www.adforum.com/'
+
+- id: 'design'
+  name: Design
+  links:
+    -
+      label: '10 Must Have User Interface Books for Designers | Inspirationfeed'
+      url: 'http://inspirationfeed.com/shop-2/10-must-have-user-interface-books-for-designers/'
+    -
+      label: '2014 Web Design Trends, Inspiration &amp; Showcase | JUST™ Creative'
+      url: 'http://justcreative.com/2014/01/21/2014-web-design-trends/'
+    -
+      label: '2014 Web Design Trends, Inspiration &amp; Showcase | JUST&#x2122; Creative'
+      url: 'http://justcreative.com/2014/01/21/2014-web-design-trends/'
+    -
+      label: '25 Intriguing Psychology Experiments'
+      url: 'http://list25.com/25-intriguing-psychology-experiments/2/'
+    -
+      label: '3191'
+      url: 'http://3191.visualblogging.com/archives/8023_1823139852/205008'
+
+- id: 'writing-and-publishing'
+  name: 'Writing & Publishing'
+  links:
+    -
+      label: '100 Awesome Flash Fiction Prompts'
+      url: 'https://www.globesoup.net/writing-blog/100-awesome-flash-fiction-prompts'
+    -
+      label: '100 legal sites to download literature'
+      url: 'http://justenglish.me/2012/09/01/free-books-100-legal-sites-to-download-literature/'
+    -
+      label: 'A Good History and Etymology of the Word Hacker'
+      url: 'http://www.newyorker.com/tech/elements/a-short-history-of-hack'
+    -
+      label: 'All That : The New Yorker'
+      url: 'http://www.newyorker.com/fiction/features/2009/12/14/091214fi_fiction_wallace?currentPage=all'
+    -
+      label: 'Amazon.com: An Introduction to the Economics of Information'
+      url: 'http://www.amazon.com/Introduction-Economics-Information-Incentives-Contracts/dp/0199243255/ref=sr_1_1?ie=UTF8&s=books&qid=1195156560&sr=8-1'
+
+- id: 'science-and-research'
+  name: 'Science & Research'
+  links:
+    -
+      label: 'Admission Information : Graduate &amp; Professional Studies : Tufts University'
+      url: 'http://ase.tufts.edu/gradstudy/admissions.htm'
+    -
+      label: Applets
+      url: 'http://www.math.uah.edu/stat/applets/'
+    -
+      label: 'ASCII Generator'
+      url: 'http://www.network-science.de/ascii/'
+    -
+      label: 'Beyond IQ: Youngsters Who Can Focus on the Task at Hand Do Better in Math: Scientific American'
+      url: 'http://www.sciam.com/article.cfm?chanID=sa003&articleID=90377FAE-E7F2-99DF-3A1204FC5F2BF0F7&ref=rss'
+    -
+      label: CollegeHumor
+      url: 'http://www.collegehumor.com/'
+
+- id: 'lifestyle'
+  name: 'Lifestyle'
+  links:
+    -
+      label: 'Cascading Rivers Scenic Bikeway - Travel Oregon'
+      url: 'https://traveloregon.com/things-to-do/outdoor-recreation/bicycling/cascading-rivers-scenic-bikeway/'
+    -
+      label: 'Dawkin’s Bad Idea: Memes, Genes and the Metaphors of Psychology'
+      url: 'http://www.homestead.com/flowstate/files/zdawkinsgood.htm'
+    -
+      label: 'Dawn Metta'
+      url: 'https://buddhistrecovery.org/meetings/dawn-metta-portland-or/'
+    -
+      label: "Everybody's Free to Wear Sunglasses -- Kurt Vonnegut's Commencement"
+      url: 'http://condellpark.com/kd/sunscreen4.htm'
+    -
+      label: 'First Step Recovery House, Inc.'
+      url: 'https://firststeprecoveryhouseinc.org/about-us/'

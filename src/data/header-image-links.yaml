@@ -1,0 +1,8 @@
+- id: 'new'
+  label: 'New'
+  description: "What's new on the web?"
+  url: https://www.perplexity.ai/search/what-s-new-on-the-web-Gvuy9wnHRMaJ4g__QsypQg
+- id: 'cool'
+  label: 'Cool'
+  description: "What's cool on the web?"
+  url: https://www.perplexity.ai/search/what-s-cool-on-the-web-no2fAX1kRXOjxTD6pNmYXg

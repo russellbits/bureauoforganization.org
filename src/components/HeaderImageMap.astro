@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+
+const links = await getCollection('header_images_links');
+const newLink = links.find(item => item.id === 'new');
+const coolLink = links.find(item => item.id === 'cool');
+---
+<div class="logo-area">
+    <img src="/images/banner-small.jpg" width="884" height="198" alt="Bureau of Organization" usemap="#image-map"/>
+</div>
+
+<map name="image-map">
+    <area
+        target=""
+        alt={newLink.data.description}
+        title={newLink.data.description}
+        href={newLink.data.url}
+        coords="0,226,125,63"
+        shape="rect"
+    />
+    <area target="" alt={coolLink.data.description} title={coolLink.data.description} href={coolLink.data.url} coords="150,63,284,236" shape="rect">
+    <area target="" alt="Today's News" title="Today's News" href="https://ground.news" coords="929,49,1102,243" shape="rect">
+    <area target="" alt="More Yahoos" title="More Yahoos" href="https://en.wikipedia.org/wiki/Category:People_pardoned_by_Donald_Trump" coords="1110,50,1263,245" shape="rect">
+</map>
+
+<style>
+.logo-area {
+    width: 100vw;
+    text-align: center;
+}
+.logo-area img {
+    width: 880px;
+}
+</style>

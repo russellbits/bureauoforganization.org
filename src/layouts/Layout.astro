@@ -1,0 +1,36 @@
+---
+import TippyTopNav from '@components/TippyTopNav.astro';
+import TopNav from '@components/TopNav.astro';
+import SubMenu from '@components/SubMenu.astro';
+import MidMenu from '@components/MidMenu.astro';
+import HeaderImageMap from '@components/HeaderImageMap.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_INFO } from "@scripts/bureau_config.js";
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="/styles/house.css" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{SITE_INFO.title}</title>
+		<meta name="description" content={SITE_INFO.description} />
+        <!-- The hook for articles to generate Open Graph previews -->
+        <slot name="head" />
+	</head>
+	<body>
+	<TippyTopNav />
+	<TopNav />
+	<HeaderImageMap />
+	<SubMenu />
+	<MidMenu />
+	<slot />
+	<Footer />
+	<script>
+	import "@scripts/test.js";
+  </script>
+	</body>
+</html>

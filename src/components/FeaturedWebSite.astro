@@ -1,0 +1,46 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  site_slug: string;
+}
+
+const { site_slug } = Astro.props;
+
+// Fetch the specific item from the collection by its filename ID
+const item = await getEntry('featured_sites', site_slug);
+
+if (!item) {
+  throw new Error(`Featured site "${site_slug}" not found in content collections.`);
+}
+
+const { label, description, url, tags } = item.data;
+---
+
+<div class="featured-site-card">
+    <img src={`/web-site-previews/${site_slug}.jpg`} width="600" />
+    <h3><a href={url}>{label}</a></h3>
+    <p>{description}</p>
+    <div class="tags">
+        {tags.map(tag => <span class="tag">{tag}</span>)}
+    </div>
+</div>
+
+<style>
+.tag:not(:last-child)::after {
+  content: ", ";
+}
+
+.featured-site-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.featured-site-card img {
+    max-width: 200px;
+    border: 1px dotted green;
+}
+</style>

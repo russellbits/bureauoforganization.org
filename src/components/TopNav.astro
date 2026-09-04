@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+
+const links = await getCollection('top_nav_links');
+---
+
+<div class="top-nav">
+  {links.map((link) => (
+    <div key={link.id} class="link">
+      <a href={link.data.url} title={link.data.description}>{link.data.label}</a>
+    </div>
+  ))}
+</div>
+
+<style>
+.top-nav {
+    font: 16px serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #fff;
+    background-color: #006;
+    width: 100%;
+    margin: 0;
+}
+.top-nav > .link {
+    justify-self: center;
+    padding: 10px 16px;
+    border-right: 1px solid #fff;
+}
+.top-nav > .link:last-child {
+    border: none;
+}
+.top-nav > .link a {
+    color: #fff;
+}
+</style>
