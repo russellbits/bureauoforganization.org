@@ -1,18 +1,124 @@
 ---
 ---
-<h2>Me name is footer</h2>
+
+<footer>
+	<div>
+		Made with &#128150; and <a href="https://astro.build">Astro!</a>. &copy; Russell Warner
+		2026.
+	</div>
+	<div class="footer-nav">
+		<h2>Other sites you may like:</h2>
+		<div class="properties">
+			<div class="property">
+				<h3>R.E. Warner</h3>
+				<p>Other writing of mine:</p>
+				<ul>
+					<li><a href="https://medium.com/the-ways-of-being-in-the-world">n Ways of Being in the World</a></li>
+					<li><a href="https://theneverendingfictionmachine.com">The Neverending Fiction Machine</a></li>
+					<li><a href="https://russellbits.com/writing/">General Stuff</a></li>
+				</ul>
+			</div>
+			<div class="property">
+				<h3>Nicolle Bradford Plays</h3>
+				<p>Hype Instigator</p>
+				<ul>
+					<li><a href="https://nicollebradfordplays.com/">Home</a></li>
+					<li><a href="https://www.ebay.com/usr/mymammasaid">My Mama Said Shop</a></li>
+					<!-- <li><a href="https://nicollebradfordplays.com/">John's Cat Pet Sitting</a></li> -->
+				</ul>
+			</div>
+			<div class="property">
+				<h3>Whatnow.is</h3>
+				<p>We create digtial infrastructure</p>
+				<ul>
+					<li><a href="https://whatnow.is/">Home</a></li>
+					<li><a href="https://whatnow.is/contact/">Let's Chat</a></li>
+				</ul>
+			</div>
+			<div class="property">
+				<h3>Brother Dustfish</h3>
+				<p>A novel about a strange child</p>
+				<ul>
+					<li><a href="https://brotherdustfish.com">Download the book so far</a></li>
+					<!-- <li>Read the book so far</li> -->
+					<!-- <li>Sign up for news</li> -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
 
 <style>
-.footer {
-    background-color: #cccccc;
-    padding: 15px;
-    text-align: center;
-    font-size: 11px;
-    margin-top: 20px;
-}
+	footer {
+		position: relative;
+		bottom: 0px;
+		color: white;
+		text-align: center;
+		width: 100%;
+		padding-top: 26px;
+		margin: 0 auto;
+		margin-top: 4em;
+		background-color: #333;
+	}
+	a:link,
+	a:visited,
+	a:active {
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		color: #fcc;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+	.footer-nav {
+		width: 100%;
+		margin: 0 auto;
+		padding: 1.4em;
+	}
+	.footer-nav h2 {
+	    color: white;
+		font-weight: 100;
+		margin-bottom: 0.6em;
+	}
+	.footer-nav p {
+	    text-indent: 0;
+	    color: white;
+	}
+	.properties {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+	@media (min-width: 768px) {
+		.properties {
+			justify-content: space-around;
+		}
+	}
+	.property {
+		text-align: left;
+		margin: 0;
+		padding: 0;
+	}
+	.property h3 {
+	color: white;
+		font-size: 1.5em;
+		margin: 0;
+		padding: 0;
+	}
+	.property p {
+		font-style: italic;
+		line-height: 1.2em;
+		padding: 0.6em 0;
+	}
+	.property ul {
+		margin: 0;
+		padding: 0;
+	}
 
-.footer a { color: #0000cc; }
-.footer-section {
-    margin-bottom: 10px;
-}
+	.property li {
+		list-style-type: none;
+		padding-bottom: 0.3em;
+	}
 </style>
