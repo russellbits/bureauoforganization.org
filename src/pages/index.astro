@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro'
 import CategoryBlock from '@components/CategoryBlock.astro'
 import FeaturedWebSite from '@components/FeaturedWebSite.astro'
+import BigBlockSpecial from '@components/BigBlockSpecial.astro'
 
 // Fetch the clean array of category entries directly
 const categoriesData = await getCollection('categories');
@@ -28,7 +29,13 @@ const development = categoriesData.find(item => item.id === 'development');
             <a href="https://banapana.com"><img src='/images/ad-banapana.png' width="538" height="234" /></a>
         </div>
         <div class="card">
+            <FeaturedWebSite site_slug={'font-squirrel'} />
+        </div>
+        <div class="card">
             <FeaturedWebSite site_slug={'look-busy'} />
+        </div>
+        <div class="card">
+            <BigBlockSpecial />
         </div>
         <div class="card">
             {newsMediaCategory ? ( <CategoryBlock category={newsMediaCategory.data} /> ) : ( <p>Category not found!</p> )}
@@ -38,6 +45,9 @@ const development = categoriesData.find(item => item.id === 'development');
         </div>
         <div class="card">
             {development ? ( <CategoryBlock category={development.data} /> ) : ( <p>Category not found!</p> )}
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'sast'} />
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'game-theory-arcade'} />
