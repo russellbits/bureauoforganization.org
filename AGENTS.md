@@ -1,22 +1,5 @@
-## Development
+# Bureau of Organization
 
-When starting the dev server, use background mode:
+This is an Astro web site that displays small "blocks" that represent web pages (preview image, title, description and tags). Some blocks are lists and all lists come from `src/data/links.yaml`.
 
-```
-astro dev --background
-```
-
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
-
-## Documentation
-
-Full documentation: https://docs.astro.build
-
-Consult these guides before working on related tasks:
-
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+It is a silly site, desinged to look like a web site from the late 1990s. The links and web sites are generally humorous in nature. Some of the list blocks are kind of serious.
