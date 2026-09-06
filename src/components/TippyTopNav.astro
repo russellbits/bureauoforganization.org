@@ -3,17 +3,21 @@ import { getCollection } from 'astro:content';
 ---
 <div class="personal-bar">
     <a href="https://habitica.com">My Habitica!</a> |
-    <a href="https://russellbits.com">The Russellbits!</a> |
+    <a href="https://russellbits.com">Russellbits</a> |
     <a href="https://www.perplexity.ai/search/7f1627f7-de7f-4be9-9863-90026165119c">Bureau of Organization for Kids</a> |
     <a href="https://en.wikipedia.org/wiki/Real_wages">Read About the Extraction Class</a>
 </div>
 
 <style>
 .personal-bar {
-    font: 12px serif;
+    font: 12px seri
+    flex-direction: row;
     display: flex;
-      justify-content: center; /* Horizontally centers the child */
-      align-items: center;
+    gap: 20px;
+    justify-content: center; /* Horizontally centers the child */
+    align-items: center;
     margin: 10px 0;
 }
+.personal-bar a {
+    display: block;
 </style>
