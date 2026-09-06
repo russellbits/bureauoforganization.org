@@ -1,65 +1,3 @@
-- id: 'ai-machine-learning'
-  name: 'AI & Machine Learning'
-  links:
-    -
-      label: '"Information Theory, Inference, and Learning Algorithms" by David MacKay'
-      desc: 'A unified, application-driven introduction to how probability, entropy, coding, and Bayesian inference explain data compression, reliable communication, and machine learning methods'
-      url: 'http://www.inference.org.uk/itila/book.html'
-    -
-      label: 'Huggingface'
-      desc: 'Models, Datasets and Other AI Tools'
-      url: 'https://huggingface.co'
-    -
-      label: 'Beatoven'
-      desc: 'AI Music Generator'
-      url: 'https://www.beatoven.ai'
-    -
-      label: 'Conceptnet'
-      desc: 'An open, multilingual knowledge graph'
-      url: 'https://conceptnet.io'
-    -
-      label: 'Agent Skills Marketplace'
-      desc: 'Explore public GitHub SKILL.md examples to discover unfamiliar uses or gather references before shaping a Skill of your own'
-      url: 'https://skillsmp.com'
-
-- id: 'unsorted'
-  name: 'Unsorted'
-  links:
-    -
-      label: '.:: PoeticTerror.Com ::.'
-      url: 'http://www.poeticterror.com/exp/'
-    -
-      label: '(6) Banapanazine (@banapanazine) • Threads, Say more'
-      url: 'https://www.threads.com/@banapanazine'
-    -
-      label: '[adult swim]'
-      url: 'http://www.adultswim.com/'
-    -
-      label: "`Shizzle' has fizzled"
-      url: 'http://www.chass.utoronto.ca/~ikalmar/100/shiznit.htm'
-    -
-      label: '| wreck this journal'
-      url: 'http://wreckthisjournal.com/'
-
-- id: 'tools'
-  name: 'Tools'
-  links:
-    -
-      label: '.htpasswd Generator Tool Crypts together any Username and Password for Apache'
-      url: 'http://www.askapache.com/online-tools/htpasswd-generator/'
-    -
-      label: 'Araelium Group : Querious - MySQL Database Tool'
-      url: 'http://www.araelium.com/querious/'
-    -
-      label: 'Banana-based Length &amp; Distance Unit Converter | Convert To Bananas'
-      url: 'https://www.converttobananas.com/'
-    -
-      label: BWToolkit
-      url: 'http://brandonwalkin.com/bwtoolkit/'
-    -
-      label: 'Connect our SMS gateway to your application or web service | sms web service'
-      url: 'http://www.mobilemarketing.net/Api.aspx'
-
 - id: 'news-and-media'
   name: 'News & Media'
   links:
@@ -83,6 +21,77 @@
       label: 'Ground.news'
       url: 'https://ground.news'
       desc: 'Every side of every news story'
+
+- id: 'ai-machine-learning'
+  name: 'AI & Machine Learning'
+  links:
+    -
+      label: '"Information Theory, Inference, and Learning Algorithms" by David MacKay'
+      desc: 'A unified, application-driven introduction to how probability, entropy, coding, and Bayesian inference explain data compression, reliable communication, and machine learning methods'
+      url: http://www.inference.org.uk/itila/book.html
+    -
+      label: 'Huggingface'
+      desc: 'Models, Datasets and Other AI Tools'
+      url: https://huggingface.co
+    -
+      label: 'Beatoven'
+      desc: 'AI Music Generator'
+      url: https://www.beatoven.ai
+    -
+      label: 'Conceptnet'
+      desc: 'An open, multilingual knowledge graph'
+      url: https://conceptnet.io
+    -
+      label: 'Agent Skills Marketplace'
+      desc: 'Explore public GitHub SKILL.md examples to discover unfamiliar uses or gather references before shaping a Skill of your own'
+      url: https://skillsmp.com
+
+
+- id: 'toys'
+  name: '🪀 Web Toys'
+  links:
+    -
+      label: '.:: Daily Mini Maze ::.'
+      desc: 'Mazes.'
+      url: https://maze.toys/mazes/mini/daily/
+    -
+      label: 'The Shepard Tone'
+      desc: "An auditory illusion that sounds like it's endlessly rising (or falling) in pitch, but never actually goes anywhere. Click to start!"
+      url: https://optical.toys/shepard-tone/
+    -
+      label: "Draw Corporate Logos From memory"
+      desc: "That's it. Draw a logo from memory, see if you're right. 🙄"
+      url: https://neal.fun/logos-from-memory/
+    -
+      label: 'Fortune Cookie Choas'
+      desc: 'Each day, crack open 5 fortune cookies and sort them.'
+      url: https://www.bored.com/arcade/fortune-cookie-chaos/
+    -
+      label: 'Eel Slap'
+      desc: 'Slap the dude with an eel. Highly satisfying'
+      url: https://eelslap.com
+
+- id: 'video'
+  name: 'Video'
+  links:
+    -
+      label: '[adult swim]'
+      url: 'http://www.adultswim.com/'
+    -
+      label: '.htpasswd Generator Tool Crypts together any Username and Password for Apache'
+      url: 'http://www.askapache.com/online-tools/htpasswd-generator/'
+    -
+      label: 'Araelium Group : Querious - MySQL Database Tool'
+      url: 'http://www.araelium.com/querious/'
+    -
+      label: 'Banana-based Length &amp; Distance Unit Converter | Convert To Bananas'
+      url: 'https://www.converttobananas.com/'
+    -
+      label: BWToolkit
+      url: 'http://brandonwalkin.com/bwtoolkit/'
+    -
+      label: 'Connect our SMS gateway to your application or web service | sms web service'
+      url: 'http://www.mobilemarketing.net/Api.aspx'
 
 - id: 'development'
   name: 'Handy Web Development Tools'
@@ -108,6 +117,29 @@
       url: 'https://www.bestcssbuttongenerator.com/#/1'
       desc: "The old school way of crafting CTA buttons"
 
+- id: 'pointless'
+  name: 'Top 5 Totally Pointless Web Site'
+  links:
+    -
+      label: 'Eggman'
+      desc: 'Feed the Eggman. Beware the Eggman. He lies.'
+      url: https://jshhncck.itch.io/eggman
+    -
+      label: 'Etch-a-Sketch'
+      desc: "A great way to drive yourself mad."
+      url: https://paint.toys/etch-a-sketch/
+    -
+      label: 'Banana-based Length & Distance Unit Converter'
+      desc: 'Convert weights and distances into bananas.'
+      url: https://www.converttobananas.com/
+    -
+      label: 'Pung in a Rug'
+      desc: "Honor the Pug"
+      url: https://puginarug.com
+    -
+      label: "Snapegiator"
+      desc: "Play snake but make music while you do."
+      url: https://musical.toys/toys/snapegiator/
 
 - id: 'fun-js-libs'
   name: 'Fun Javascript Libraries'

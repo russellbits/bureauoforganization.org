@@ -9,7 +9,9 @@ import BigBlockSpecial from '@components/BigBlockSpecial.astro'
 const categoriesData = await getCollection('categories');
 const aiCategory = categoriesData.find(item => item.id === 'ai-machine-learning');
 const newsMediaCategory = categoriesData.find(item => item.id === 'news-and-media');
-const development = categoriesData.find(item => item.id === 'development');
+const developmentCategory = categoriesData.find(item => item.id === 'development');
+const toysCategory = categoriesData.find(item => item.id === 'toys');
+const pointlessCategory = categoriesData.find(item => item.id === 'pointless');
 ---
 <Layout>
     <main id="masonry-grid">
@@ -23,16 +25,28 @@ const development = categoriesData.find(item => item.id === 'development');
             {aiCategory ? ( <CategoryBlock category={aiCategory.data} /> ) : ( <p>Category not found!</p> )}
         </div>
         <div class="card">
+            <FeaturedWebSite site_slug={'etch-a-sketch'} />
+        </div>
+        <div class="card">
             <FeaturedWebSite site_slug={'eggman'} />
         </div>
         <div class="card">
             <a href="https://banapana.com"><img src='/images/ad-banapana.png' width="538" height="234" /></a>
         </div>
         <div class="card">
+            <FeaturedWebSite site_slug={'weird-or-confusing'} />
+        </div>
+        <div class="card">
             <FeaturedWebSite site_slug={'font-squirrel'} />
         </div>
         <div class="card">
+            {toysCategory ? ( <CategoryBlock category={toysCategory.data} /> ) : ( <p>Category not found!</p> )}
+        </div>
+        <div class="card">
             <FeaturedWebSite site_slug={'look-busy'} />
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'always-judge'} />
         </div>
         <!-- <div class="card">
             <BigBlockSpecial />
@@ -44,13 +58,16 @@ const development = categoriesData.find(item => item.id === 'development');
             <FeaturedWebSite site_slug={'the-oatmeal'} />
         </div>
         <div class="card">
-            {development ? ( <CategoryBlock category={development.data} /> ) : ( <p>Category not found!</p> )}
+            {developmentCategory ? ( <CategoryBlock category={developmentCategory.data} /> ) : ( <p>Category not found!</p> )}
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'sast'} />
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'game-theory-arcade'} />
+        </div>
+        <div class="card">
+            {pointlessCategory ? ( <CategoryBlock category={pointlessCategory.data} /> ) : ( <p>Category not found!</p> )}
         </div>
     </main>
 </Layout>

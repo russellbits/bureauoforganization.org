@@ -1,0 +1,38 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    background-color: #aaaaaa;
+}
+
+#masonry-grid {
+    position: relative;
+    margin-left: 20px;
+    width: 100%;
+}
+
+.card {
+    position: absolute;
+    max-width: 250px;
+    background-color: #bdbdbd;
+    padding: 0 1rem;
+    margin: 20px 0;
+    border: 1px dotted gray;
+    box-shadow: 14px 15px 0px 0px rgba(96, 96, 96, 1.00);
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.card img {
+    max-width: 250px;
+    height: auto;
+}
+
+.card.list {
+    width: 250px;
+}
+
+.card.slate {
+    background-color: #333;
+}
