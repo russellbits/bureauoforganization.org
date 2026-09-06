@@ -34,11 +34,11 @@ const { tag, sites } = Astro.props;
     <h1>Featured Sites with Tag: {tag}</h1>
     <main id="masonry-grid">
     {sites.length > 0 ? (
-      <div class="tagged-sites-grid">
+        <div class="card">
         {sites.map(site => (
-          <div class="card"><FeaturedWebSite site_slug={site.id || site.slug} /></div>
+          <FeaturedWebSite site_slug={site.id || site.slug} />
         ))}
-      </div>
+        </div>
     ) : (
       <p>No featured sites found with the tag: {tag}</p>
     )}
@@ -46,10 +46,41 @@ const { tag, sites } = Astro.props;
 </Layout>
 
 <style>
-.tagged-sites-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+main {
+    min-height: 100vh;
 }
 </style>
+
+<script>
+import Masonry from 'masonry-layout';
+
+function initMasonry() {
+  const grid = document.getElementById('masonry-grid');
+  if (!grid) return;
+
+  const masonry = new Masonry(grid, {
+    itemSelector: '.card',
+    columnWidth: 250,
+    gutter: 30,
+    fitWidth: true
+  });
+
+  // Initial layout
+  masonry.layout();
+
+  // Fix 1: Trigger layout after all images load
+  const images = grid.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.complete) return;
+    img.addEventListener('load', () => masonry.layout());
+  });
+
+  // Fix 2: Trigger layout after custom web fonts finish rendering
+  if ('fonts' in document) {
+    document.fonts.ready.then(() => masonry.layout());
+  }
+}
+
+initMasonry();
+document.addEventListener('astro:page-load', initMasonry);
+</script>

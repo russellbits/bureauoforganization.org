@@ -6,6 +6,12 @@ body {
     background-color: #aaaaaa;
 }
 
+#masonry-grid {
+    position: relative;
+    margin-left: 20px;
+    width: 100%;
+}
+
 .card {
     position: absolute;
     max-width: 250px;
