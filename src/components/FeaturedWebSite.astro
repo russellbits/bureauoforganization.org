@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
 interface Props {
   site_slug: string;
@@ -15,20 +16,46 @@ if (!item) {
 }
 
 const { label, description, url, tags } = item.data;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/web-site-previews/*.{jpeg,jpg,png,gif}');
+const imagePath = `/src/assets/web-site-previews/${site_slug}.jpg`;
+
+if (!images[imagePath]) {
+  throw new Error(`Image "${imagePath}" not found.`);
+}
 ---
 
 <div class="featured-site-card">
-    <img src={`/web-site-previews/${site_slug}.jpg`} width="600" />
+    <Image src={images[imagePath]()} alt={label} width={200} />
     <h3><a href={url}>{label}</a></h3>
     <p>{description}</p>
     <div class="tags">
-        {tags.map(tag => <span class="tag">{tag}</span>)}
-    </div>
+        {tags && tags.map(tag => (
+          <span class="tag">
+            <a href={`/tags/${encodeURIComponent(tag.toLowerCase())}`}>{tag}</a>
+          </span>
+        ))}
+      </div>
 </div>
 
 <style>
+/* Using boexs, but this is useful for the future
 .tag:not(:last-child)::after {
   content: ", ";
+}
+*/
+
+.tag {
+    display: inline-block;
+    color: white;
+    background-color: purple;
+    padding: 6px;
+    margin: 3px;
+}
+
+.tag a {
+    color: white;
+    text-decoration: none;
 }
 
 .featured-site-card {
