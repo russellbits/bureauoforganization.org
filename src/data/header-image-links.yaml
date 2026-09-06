@@ -6,3 +6,11 @@
   label: 'Cool'
   description: "What's cool on the web?"
   url: https://www.perplexity.ai/search/what-s-cool-on-the-web-no2fAX1kRXOjxTD6pNmYXg
+- id: 'news'
+  label: "Today's News"
+  description: "What's the news today?"
+  url: https://www.youtube.com/@breakingpoints
+- id: 'moreyahoos'
+  label: "More Yahoos"
+  description: "All the Yahoos"
+  url: https://en.wikipedia.org/wiki/Category:People_pardoned_by_Donald_Trump

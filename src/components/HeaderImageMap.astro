@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 const links = await getCollection('header_images_links');
 const newLink = links.find(item => item.id === 'new');
 const coolLink = links.find(item => item.id === 'cool');
+const newsLink = links.find(item => item.id === 'news');
+const yahoosLink = links.find(item => item.id === 'moreyahoos');
 ---
 <div class="logo-area">
     <img src="/images/banner-small.jpg" width="884" height="198" alt="Bureau of Organization" usemap="#image-map"/>
@@ -11,16 +13,16 @@ const coolLink = links.find(item => item.id === 'cool');
 
 <map name="image-map">
     <area
-        target=""
         alt={newLink.data.description}
         title={newLink.data.description}
         href={newLink.data.url}
         coords="0,226,125,63"
         shape="rect"
     />
-    <area target="" alt={coolLink.data.description} title={coolLink.data.description} href={coolLink.data.url} coords="150,63,284,236" shape="rect">
-    <area target="" alt="Today's News" title="Today's News" href="https://ground.news" coords="929,49,1102,243" shape="rect">
-    <area target="" alt="More Yahoos" title="More Yahoos" href="https://en.wikipedia.org/wiki/Category:People_pardoned_by_Donald_Trump" coords="1110,50,1263,245" shape="rect">
+    <area alt={coolLink.data.description} title={coolLink.data.description} href={coolLink.data.url} coords="150,63,284,236" shape="rect">
+    <area alt="Home Page" title="Home Page" href="/" coords="641,197,205,-1" shape="rect">
+    <area alt={newsLink.data.description} title={newsLink.data.description} href={newsLink.data.url} coords="929,49,1102,243" shape="rect">
+    <area alt={yahoosLink.data.description} title={yahoosLink.data.description} href={yahoosLink.data.url} coords="1110,50,1263,245" shape="rect">
 </map>
 
 <style>
