@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import FeaturedWebSite from '@components/FeaturedWebSite.astro'; // Adjust import path if needed
+
+export async function getStaticPaths() {
+  const allSites = await getCollection('featured_sites');
+
+  // Collect all unique tags
+  const allTags = new Set<string>();
+  allSites.forEach(site => {
+    if (site.data.tags) {
+      site.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+
+  // Pass filtered and sorted sites directly via props
+  return Array.from(allTags).map(tag => {
+    const sitesWithTag = allSites
+      .filter(site => site.data.tags && site.data.tags.includes(tag))
+      .sort((a, b) => a.data.label.localeCompare(b.data.label));
+
+    return {
+      params: { tag },
+      props: { tag, sites: sitesWithTag }
+    };
+  });
+}
+
+const { tag, sites } = Astro.props;
+---
+
+<Layout>
+    <h1>Featured Sites with Tag: {tag}</h1>
+    <main id="masonry-grid">
+    {sites.length > 0 ? (
+      <div class="tagged-sites-grid">
+        {sites.map(site => (
+          <div class="card"><FeaturedWebSite site_slug={site.id || site.slug} /></div>
+        ))}
+      </div>
+    ) : (
+      <p>No featured sites found with the tag: {tag}</p>
+    )}
+  </main>
+</Layout>
+
+<style>
+.tagged-sites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+</style>
