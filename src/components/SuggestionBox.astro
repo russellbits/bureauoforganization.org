@@ -1,0 +1,141 @@
+---
+---
+<div id="suggestion-box">
+	<form
+		id="suggestion-form"
+		hx-post="/submit-suggestion.php"
+		hx-target="#suggestion-box"
+		hx-swap="outerHTML swap:500ms"
+		hx-trigger="submit"
+	>
+		<div class="suggestion-input-container">
+			<div><input type="text" id="suggestion-input" name="suggestion" placeholder="Enter website suggestion here..." required></div>
+			<div id="code-display" class="code-display hidden">
+				<p>Type in this 4 digit code in front of your url so we know you're not a bot. Also, if you're a bot smart enough to understand those instructions, good job. We will accept your submission.</p>
+				<p id="code-value"></p>
+			</div>
+			<div><button type="submit" id="suggest-button">Suggest Web Site</button></div>
+		</div>
+
+	</form>
+</div>
+
+<style>
+	:global(#suggestion-box) {
+	    color: white;
+		text-align: center;
+		background-color: #444;
+		padding: 1em;
+		border-radius: 5px;
+		width: 60vw;
+		margin: 1em auto;
+		transition: opacity 500ms ease-out;
+        opacity: 1;
+	}
+
+	/* Fade out during swap */
+	:global(#suggestion-box.htmx-swapping) {
+	    opacity: 0;
+	}
+
+	.suggestion-input-container {
+	    display: grid;
+		grid-template-columns: 3fr 1fr;
+		position: relative;
+		margin-bottom: 1em;
+	}
+
+	#suggestion-input {
+	    color: white;
+		font-size: 1em;
+		background-color: #222;
+		border: 1px solid #666;
+		border-radius: 3px;
+		padding: 0.5em;
+		width: 90%;
+	}
+
+	#suggestion-input:focus {
+		outline: none;
+		border-color: #888;
+	}
+
+	.code-display {
+		position: absolute;
+		top: -130px;
+		left: 0;
+		width: 100%;
+		padding: 0.5em;
+		background-color: #333;
+		border: 3px solid #fff;
+		border-radius: 15px;
+		color: #fff;
+		z-index: 100;
+		opacity: 0.9;
+	}
+
+	.code-display.hidden {
+		display: none;
+	}
+
+	#suggest-button {
+		padding: 0.5em 1em;
+		background-color: #555;
+		color: white;
+		border: none;
+		border-radius: 3px;
+		cursor: pointer;
+		font-size: 1em;
+	}
+
+	#suggest-button:hover {
+		background-color: #666;
+	}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	const input = document.getElementById('suggestion-input');
+	const codeDisplay = document.getElementById('code-display');
+	const codeValue = document.getElementById('code-value');
+	const form = document.getElementById('suggestion-form');
+
+	// Generate a random 4-digit code
+	const generateCode = () => {
+		return Math.floor(1000 + Math.random() * 9000).toString();
+	};
+
+	// Store the code in a global variable so we can verify it later
+	let currentCode = '';
+
+	// Display the code when user focuses on input
+	input.addEventListener('focus', function() {
+		currentCode = generateCode();
+		codeValue.textContent = currentCode;
+		codeDisplay.classList.remove('hidden');
+	});
+
+	// Hide the code display when user clicks away
+	input.addEventListener('blur', function() {
+		// We keep it visible when user is typing to prevent confusion
+		if (!this.value.includes(currentCode)) {
+			codeDisplay.classList.add('hidden');
+		}
+	});
+
+	// Basic validation on form submission - now we let HTMX handle the actual submission
+	form.addEventListener('submit', function(e) {
+		const suggestion = input.value.trim();
+
+		// Check if the suggestion includes the code at the beginning
+		if (suggestion.startsWith(currentCode)) {
+			// Allow HTMX to handle the submission properly
+			return true;
+		} else {
+			e.preventDefault(); // Stop the form from submitting
+			alert('Please enter the correct 4-digit code at the beginning of your suggestion!');
+			return false;
+		}
+	});
+});
+</script>

@@ -20,6 +20,8 @@ import { SITE_INFO } from "@scripts/bureau_config.js";
 		<meta name="description" content={SITE_INFO.description} />
         <!-- The hook for articles to generate Open Graph previews -->
         <slot name="head" />
+        <!-- HTMX -->
+        <script src="https://unpkg.com/htmx.org@2.0.10"></script>
 	</head>
 	<body>
 	<TippyTopNav />
@@ -29,8 +31,5 @@ import { SITE_INFO } from "@scripts/bureau_config.js";
 	<MidMenu />
 	<slot />
 	<Footer />
-	<script>
-	import "@scripts/test.js";
-  </script>
 	</body>
 </html>

@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro'
 import CategoryBlock from '@components/CategoryBlock.astro'
 import FeaturedWebSite from '@components/FeaturedWebSite.astro'
+import SuggestionBox from '@components/SuggestionBox.astro'
 import BigBlockSpecial from '@components/BigBlockSpecial.astro'
 
 // Fetch the clean array of category entries directly
@@ -70,6 +71,7 @@ const pointlessCategory = categoriesData.find(item => item.id === 'pointless');
             {pointlessCategory ? ( <CategoryBlock category={pointlessCategory.data} /> ) : ( <p>Category not found!</p> )}
         </div>
     </main>
+    <SuggestionBox />
 </Layout>
 
 <style>
