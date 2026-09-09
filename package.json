@@ -17,6 +17,7 @@
     "astro": "^7.1.0",
     "dotenv": "^17.4.2",
     "ftp-deploy": "^2.4.7",
+    "htmx.org": "^2.0.10",
     "masonry-layout": "^4.2.2",
     "path": "^0.12.7",
     "url": "^0.11.4"
