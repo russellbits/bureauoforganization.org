@@ -6,20 +6,6 @@
     - stuff
     - junk
     - garage sale
-- id: 'habitica'
-  label: 'My Habitica!'
-  description: "Goofy productivity game that's fun for everyone."
-  url: https://habitica.com/profile/c564eb58-83a1-490b-8760-642cce9cf5b7
-  tags:
-    - relevant
-    - television
-    - game
-- id: 'russllbits'
-  label: 'The Russellbits!'
-  description: "The home and clubhouse of one Russell Warner"
-  url: https://russellbits.com
-  tags:
-    - Russell_Warner
 - id: 'bureau_for_kids'
   label: 'Bureau of Organization for Kids'
   description: "Something *really* fun fort he kids!"
