@@ -52,13 +52,13 @@ async function enhancedDeploy() {
       if (data.filename) {
         // Show progress with percentage
         const percentage = Math.round((data.transferredFileCount / data.totalFilesCount) * 100);
-        process.stdout.write(`\r📝 Uploading: ${data.filename} (${percentage}%)`);
+        console.log(`📝 Uploading: ${data.filename} (${percentage}%)`);
       }
     });
 
     ftpDeploy.on('uploaded', (data) => {
       if (data.type === 'file' && data.filename) {
-        process.stdout.write(`\r✅ Uploaded: ${data.filename}`);
+        console.log(`✅ Uploaded: ${data.filename}`);
       }
     });
 
