@@ -1,0 +1,84 @@
+---
+import { XMLParser } from "fast-xml-parser";
+
+interface FeedItem {
+  title: string;
+  link: string;
+  pubDate?: string;
+}
+
+let stories: FeedItem[] = [];
+
+try {
+  const response = await fetch("https://www.clickhole.com/feed/");
+  if (!response.ok) {
+    throw new Error(`Failed to fetch RSS feed: ${response.statusText}`);
+  }
+
+  const xmlData = await response.text();
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    attributeNamePrefix: "@_",
+  });
+
+  const result = parser.parse(xmlData);
+  const rawItems = result?.rss?.channel?.item || [];
+
+  // Standardize items array and grab top 3
+  const items = Array.isArray(rawItems) ? rawItems : [rawItems];
+  stories = items.slice(0, 3).map((item: any) => ({
+    title: item.title,
+    link: item.link,
+    pubDate: item.pubDate,
+  }));
+} catch (error) {
+  console.error("Error fetching ClickHole RSS feed:", error);
+}
+---
+
+<div class="clickhole-feed">
+  <img src='/images/logo-clickhole.png' width="622" height="130" />
+  {stories.length > 0 ? (
+    <ul>
+      {stories.map((story) => (
+        <li>
+          <a href={story.link} target="_blank" rel="noopener noreferrer">
+            {story.title}
+          </a>
+          {story.pubDate && (
+            <small> - {new Date(story.pubDate).toLocaleDateString()}</small>
+          )}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>Unable to load stories at this time.</p>
+  )}
+</div>
+
+<style>
+  .clickhole-feed {
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    max-width: 600px;
+  }
+  .clickhole-feed ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .clickhole-feed li {
+    margin-bottom: 0.75rem;
+  }
+  .clickhole-feed a {
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+  }
+  .clickhole-feed a:hover {
+    text-decoration: underline;
+  }
+  .clickhole-feed small {
+    color: #64748b;
+  }
+</style>

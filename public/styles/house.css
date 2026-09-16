@@ -13,8 +13,16 @@ body {
 }
 
 .card {
+  width: 250px;
+}
+
+/* Double-width item */
+.card.wide {
+  width: 530px;
+}
+
+.card {
     position: absolute;
-    max-width: 250px;
     background-color: #bdbdbd;
     padding: 0 1rem;
     margin: 20px 0;

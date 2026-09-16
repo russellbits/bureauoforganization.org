@@ -4,7 +4,8 @@ import Layout from '@layouts/Layout.astro'
 import CategoryBlock from '@components/CategoryBlock.astro'
 import FeaturedWebSite from '@components/FeaturedWebSite.astro'
 import SuggestionBox from '@components/SuggestionBox.astro'
-import BigBlockSpecial from '@components/BigBlockSpecial.astro'
+import RSSClickhole from '@components/RSSClickhole.astro'
+import RSSBanapana from '@components/RSSBanapana.astro'
 
 // Fetch the clean array of category entries directly
 const categoriesData = await getCollection('categories');
@@ -17,7 +18,16 @@ const pointlessCategory = categoriesData.find(item => item.id === 'pointless');
 <Layout>
     <main id="masonry-grid">
         <div class="card">
+            <FeaturedWebSite site_slug={'petticoat-5'} />
+        </div>
+        <div class="card">
             <a href="https://neal.fun"><img src='/images/ad-neal-fun.png' width="538" height="234" /></a>
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'ytmnd'} />
+        </div>
+        <div class="card wide">
+            <RSSBanapana/>
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'habitica'} />
@@ -31,8 +41,11 @@ const pointlessCategory = categoriesData.find(item => item.id === 'pointless');
         <div class="card">
             <FeaturedWebSite site_slug={'eggman'} />
         </div>
-        <div class="card">
+        <!-- <div class="card">
             <a href="https://banapana.com"><img src='/images/ad-banapana.png' width="538" height="234" /></a>
+        </div> -->
+        <div class="card wide">
+            <RSSClickhole />
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'weird-or-confusing'} />
