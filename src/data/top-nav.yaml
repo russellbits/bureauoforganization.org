@@ -5,7 +5,14 @@
   tags:
     - stuff
     - junk
-    - garage sale
+    - garage_sale
+- id: 'bureau_pinboard'
+  label: 'Bureau of Pinboard'
+  description: "Where we put stuff we find."
+  url: https://www.pinboard.in/u:ruzel
+  tags:
+    - kids
+    - bureau_of_pinboard
 - id: 'bureau_for_kids'
   label: 'Bureau of Organization for Kids'
   description: "Something *really* fun fort he kids!"
