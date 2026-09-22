@@ -4,6 +4,8 @@ import Layout from '@layouts/Layout.astro'
 import CategoryBlock from '@components/CategoryBlock.astro'
 import FeaturedWebSite from '@components/FeaturedWebSite.astro'
 import SuggestionBox from '@components/SuggestionBox.astro'
+import PinboardTagList from '@components/PinboardTagList.astro'
+import RecentBookmarks from '@components/RecentBookmarks.astro'
 import RSSClickhole from '@components/RSSClickhole.astro'
 import RSSBanapana from '@components/RSSBanapana.astro'
 
@@ -27,13 +29,16 @@ const pointlessCategory = categoriesData.find(item => item.id === 'pointless');
             <FeaturedWebSite site_slug={'ytmnd'} />
         </div>
         <div class="card wide">
-            <RSSBanapana/>
+            <RecentBookmarks />
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'habitica'} />
         </div>
         <div class="card">
             {aiCategory ? ( <CategoryBlock category={aiCategory.data} /> ) : ( <p>Category not found!</p> )}
+        </div>
+        <div class="card wide">
+            <RSSBanapana/>
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'etch-a-sketch'} />

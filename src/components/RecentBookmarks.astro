@@ -1,0 +1,87 @@
+---
+const API_TOKEN = import.meta.env.PINBOARD_TOKEN; // "username:TOKEN"
+
+interface PinboardPost {
+  href: string;
+  description: string;
+  extended: string;
+  time: string;
+  tags: string;
+}
+
+interface PinboardRecentResponse {
+  date: string;
+  user: string;
+  posts: PinboardPost[];
+}
+
+async function getRecentPosts(count = 6): Promise<PinboardPost[]> {
+  const url = new URL('https://api.pinboard.in/v1/posts/recent');
+  url.searchParams.set('count', count.toString());
+  url.searchParams.set('format', 'json');
+  url.searchParams.set('auth_token', API_TOKEN);
+
+  const response = await fetch(url.toString(), {
+    headers: {
+      'User-Agent': 'AstroSite/1.0'
+    }
+  });
+
+  if (!response.ok) {
+    // Read the exact error message or HTML payload sent back from Pinboard
+    const errorBody = await response.text();
+    console.error('--- PINBOARD DEBUG ERROR ---');
+    console.error('Status:', response.status, response.statusText);
+    console.error('Body:', errorBody);
+    console.error('----------------------------');
+
+    throw new Error(`Pinboard API error: ${response.status} ${response.statusText} - ${errorBody}`)
+  }
+
+  const data: PinboardRecentResponse = await response.json();
+  return data.posts;
+}
+
+const posts = await getRecentPosts(6);
+---
+
+<h2>The Latest from the Bureau's Pinboard</h2>
+<ul class="bookmarks-list">
+  {posts.map((post) => (
+    <li>
+      <a href={post.href} target="_blank" rel="noopener noreferrer">
+        {post.description}
+      </a>
+      {post.extended && <p>{post.extended}</p>}
+      <div class="tags">
+          {post.tags && post.tags.split(' ').map(tag => (
+            <span class="tag">
+              <a href={`/tags/${encodeURIComponent(tag.toLowerCase())}`}>{tag}</a>
+            </span>
+          ))}
+      </div>
+    </li>
+  ))}
+</ul>
+
+<style>
+ul.bookmarks-list {
+  list-style-type: none;
+  padding: 0;
+}
+ul.bookmarks-list li {
+  margin-bottom: 0.75rem;
+}
+.tag {
+    display: inline-block;
+    color: white;
+    background-color: purple;
+    padding: 6px;
+    margin: 3px;
+}
+
+.tag a {
+    color: white;
+    text-decoration: none;
+}
+</style>
