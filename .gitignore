@@ -19,6 +19,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# design templates
+.acorn
+.sketch
+
 # macOS-specific files
 .DS_Store
 

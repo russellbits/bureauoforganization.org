@@ -4,7 +4,6 @@ import Layout from '@layouts/Layout.astro'
 import CategoryBlock from '@components/CategoryBlock.astro'
 import FeaturedWebSite from '@components/FeaturedWebSite.astro'
 import SuggestionBox from '@components/SuggestionBox.astro'
-import PinboardTagList from '@components/PinboardTagList.astro'
 import RecentBookmarks from '@components/RecentBookmarks.astro'
 import RSSClickhole from '@components/RSSClickhole.astro'
 import RSSBanapana from '@components/RSSBanapana.astro'
@@ -19,6 +18,9 @@ const pointlessCategory = categoriesData.find(item => item.id === 'pointless');
 ---
 <Layout>
     <main id="masonry-grid">
+        <div class="card">
+            <FeaturedWebSite site_slug={'conan-sonic-boss'} />
+        </div>
         <div class="card">
             <FeaturedWebSite site_slug={'petticoat-5'} />
         </div>
@@ -54,6 +56,9 @@ const pointlessCategory = categoriesData.find(item => item.id === 'pointless');
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'weird-or-confusing'} />
+        </div>
+        <div class="card">
+            <FeaturedWebSite site_slug={'rew-writing'} />
         </div>
         <div class="card">
             <FeaturedWebSite site_slug={'font-squirrel'} />
