@@ -2,10 +2,23 @@
 import { getCollection } from 'astro:content';
 
 const links = await getCollection('header_images_links');
-const newLink = links.find(item => item.id === 'new');
-const coolLink = links.find(item => item.id === 'cool');
-const newsLink = links.find(item => item.id === 'news');
-const yahoosLink = links.find(item => item.id === 'moreyahoos');
+
+// All four hotspots are load-bearing: a missing entry means
+// src/data/header-image-links.yaml drifted, and an <area> with no href would
+// silently ship a dead patch of the banner. Fail loudly instead, which also
+// narrows the type for the template below.
+function requireLink(id: string) {
+    const link = links.find(item => item.id === id);
+    if (!link) {
+        throw new Error(`Header image link "${id}" not found in the header_images_links collection.`);
+    }
+    return link;
+}
+
+const newLink = requireLink('new');
+const coolLink = requireLink('cool');
+const newsLink = requireLink('news');
+const yahoosLink = requireLink('moreyahoos');
 ---
 <div class="logo-area">
     <img src="/images/banner-small.jpg" width="880" height="198" alt="Bureau of Organization" usemap="#header-image"/>

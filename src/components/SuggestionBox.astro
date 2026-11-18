@@ -1,18 +1,36 @@
 ---
 ---
 <div id="suggestion-box">
+	<!-- The only thing HTMX swaps into. Keeping it a sibling of the form, rather
+	     than the form's ancestor, is what lets a rejected suggestion leave the
+	     input, button and code panel mounted so the visitor can try again. -->
+	<div id="suggestion-message" aria-live="polite"></div>
+
 	<form
 		id="suggestion-form"
 		hx-post="/submit-suggestion.php"
-		hx-target="#suggestion-box"
-		hx-swap="outerHTML swap:500ms"
+		hx-target="#suggestion-message"
+		hx-swap="innerHTML"
 		hx-trigger="submit"
 	>
 		<div class="suggestion-input-container">
 			<div><input type="text" id="suggestion-input" name="suggestion" placeholder="Enter website suggestion here..." required></div>
 			<div id="code-display" class="code-display hidden">
 				<p>Type in this 4 digit code in front of your url so we know you're not a bot. Also, if you're a bot smart enough to understand those instructions, good job. We will accept your submission.</p>
-				<p id="code-value"></p>
+				<!-- The code lives server-side in the session; this is the copy
+				     we show you. It is fetched on load and again whenever the
+				     message box swaps, so a spent code is always replaced. -->
+				<!-- textContent, not innerHTML: a code is four digits, so there is
+				     nothing to parse. htmx inserts it without building a fragment
+				     (htmx.js:1907), which means a response can never contribute
+				     markup to this page even if the endpoint misbehaves. -->
+				<p
+					id="code-value"
+					hx-get="/issue-code.php"
+					hx-target="this"
+					hx-swap="textContent"
+					hx-trigger="load, htmx:afterSwap from:#suggestion-message"
+				>----</p>
 			</div>
 			<div><button type="submit" id="suggest-button">Suggest Web Site</button></div>
 		</div>
@@ -29,13 +47,6 @@
 		border-radius: 5px;
 		width: 60vw;
 		margin: 1em auto;
-		transition: opacity 500ms ease-out;
-        opacity: 1;
-	}
-
-	/* Fade out during swap */
-	:global(#suggestion-box.htmx-swapping) {
-	    opacity: 0;
 	}
 
 	.suggestion-input-container {
@@ -49,15 +60,16 @@
 	    color: white;
 		font-size: 1em;
 		background-color: #222;
-		border: 1px solid #666;
-		border-radius: 3px;
+		border: 2px inset #808080;
+		border-radius: 0;
 		padding: 0.5em;
 		width: 90%;
 	}
 
 	#suggestion-input:focus {
 		outline: none;
-		border-color: #888;
+		border-color: #c0c0c0;
+		background-color: #111;
 	}
 
 	.code-display {
@@ -67,74 +79,359 @@
 		width: 100%;
 		padding: 0.5em;
 		background-color: #333;
-		border: 3px solid #fff;
-		border-radius: 15px;
+		border: 3px ridge #c0c0c0;
+		border-radius: 0;
 		color: #fff;
 		z-index: 100;
-		opacity: 0.9;
+		opacity: 0.95;
 	}
 
 	.code-display.hidden {
 		display: none;
 	}
 
+	#code-value {
+		margin: 0.4em 0 0;
+		font-family: "Courier New", Courier, monospace;
+		font-size: 1.6em;
+		font-weight: bold;
+		letter-spacing: 0.4em;
+		color: #ffff00;
+	}
+
 	#suggest-button {
 		padding: 0.5em 1em;
-		background-color: #555;
-		color: white;
-		border: none;
-		border-radius: 3px;
+		background-color: #c0c0c0;
+		color: #000;
+		border: 2px outset #dfdfdf;
+		border-radius: 0;
 		cursor: pointer;
+		font-family: "Times New Roman", Times, serif;
 		font-size: 1em;
 	}
 
 	#suggest-button:hover {
-		background-color: #666;
+		background-color: #d8d8d8;
+	}
+
+	#suggest-button:active {
+		border-style: inset;
+	}
+
+	/* Grey the button out while its request is in flight. htmx puts
+	   htmx-request on the form, which is an ancestor of the button. */
+	:global(#suggestion-form.htmx-request #suggest-button) {
+		background-color: #808080;
+		color: #404040;
+		cursor: progress;
+	}
+
+	/* ------------------------------------------------------------------ *
+	 * The message boxes. HTMX swaps these in from PHP, and the local
+	 * pre-flight builds them in script, so neither can be scoped by Astro.
+	 * Palette borrowed from the rest of the site: #ffc links bar, #fcc
+	 * highlight bar, #5ec035 footer green, and the hard offset shadow
+	 * the masonry cards use.
+	 * ------------------------------------------------------------------ */
+
+	:global(#suggestion-message) {
+		transition: opacity 300ms ease-out;
+		opacity: 1;
+	}
+
+	/* Fade the message, not the whole box, so the form never disappears. */
+	:global(#suggestion-message.htmx-swapping) {
+		opacity: 0;
+	}
+
+	:global(.message-box) {
+		margin: 0 0 1em;
+		padding: 0.6em 1em 0.8em;
+		color: #000;
+		background-color: #ffc;
+		border: 3px ridge #808080;
+		box-shadow: 6px 6px 0 0 rgba(96, 96, 96, 1);
+		text-align: left;
+	}
+
+	:global(.message-box.is-error) {
+		background-color: #fcc;
+		border-color: #cc0000;
+	}
+
+	:global(.message-box.is-success) {
+		background-color: #ccffcc;
+		border-color: #5ec035;
+	}
+
+	:global(.message-heading) {
+		margin: 0 0 0.4em;
+		padding-bottom: 0.3em;
+		border-bottom: 1px dotted gray;
+		font-family: "Courier New", Courier, monospace;
+		font-size: 0.8em;
+		font-weight: bold;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+	}
+
+	:global(.message-body) {
+		font-size: 1em;
+	}
+
+	:global(.message-body p) {
+		margin: 0.3em 0;
+		text-indent: 0;
+	}
+
+	/* Period-correct link colours. */
+	:global(.message-body a) {
+		color: #0000ee;
+	}
+
+	:global(.message-body a:visited) {
+		color: #551a8b;
+	}
+
+	:global(.message-body code) {
+		font-family: "Courier New", Courier, monospace;
+		background-color: #fff;
+		border: 1px solid #808080;
+		padding: 0 2px;
+	}
+
+	/* The exclamation mark blinks. It is 1998; it would be rude not to.
+	   Disabled for anyone who has asked their OS to cut motion. */
+	:global(.message-box.is-error .message-heading)::before {
+		content: "! ";
+		color: #cc0000;
+		font-weight: bold;
+		animation: suggestion-blink 1s steps(2, start) infinite;
+	}
+
+	@keyframes suggestion-blink {
+		to { visibility: hidden; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(.message-box.is-error .message-heading)::before {
+			animation: none;
+		}
+
+		:global(#suggestion-message) {
+			transition: none;
+		}
 	}
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-	const input = document.getElementById('suggestion-input');
-	const codeDisplay = document.getElementById('code-display');
-	const codeValue = document.getElementById('code-value');
-	const form = document.getElementById('suggestion-form');
+document.addEventListener('DOMContentLoaded', function () {
+	const box = document.getElementById('suggestion-box');
+	if (!box) return;
 
-	// Generate a random 4-digit code
-	const generateCode = () => {
-		return Math.floor(1000 + Math.random() * 9000).toString();
+	// Type-only helpers are out: the Astro LSP ignores JSDoc inside inline
+	// <script> blocks, and the compiler leaves TS annotations in a plain
+	// <script> untouched, which would reach the browser as a syntax error. So
+	// the types have to come from inference. This infers as `never`, which lets
+	// ?? strip null out of the declared types below -- more robust than
+	// guarding, because the helpers further down would not inherit narrowing.
+	// It has to be an arrow expression, not a function declaration: TS infers
+	// `never` only for the former, since a hoisted declaration could be called
+	// before the throw is reachable.
+	const raise = (text = '') => {
+		throw new Error(text);
 	};
 
-	// Store the code in a global variable so we can verify it later
-	let currentCode = '';
+	const inputEl = document.getElementById('suggestion-input') ?? raise('SuggestionBox: #suggestion-input is missing');
+	// Ternary, not an if: TS honours a never-returning call as the end of a
+	// branch only inside expressions, unless its return type is annotated --
+	// and annotation syntax cannot be used here.
+	const input = inputEl instanceof HTMLInputElement ? inputEl : raise('SuggestionBox: #suggestion-input is not an <input>');
 
-	// Display the code when user focuses on input
-	input.addEventListener('focus', function() {
-		currentCode = generateCode();
-		codeValue.textContent = currentCode;
-		codeDisplay.classList.remove('hidden');
+	const formEl = document.getElementById('suggestion-form') ?? raise('SuggestionBox: #suggestion-form is missing');
+	const form = formEl instanceof HTMLFormElement ? formEl : raise('SuggestionBox: #suggestion-form is not a <form>');
+
+	const codeDisplay = document.getElementById('code-display') ?? raise('SuggestionBox: #code-display is missing');
+	const codeValue = document.getElementById('code-value') ?? raise('SuggestionBox: #code-value is missing');
+	const message = document.getElementById('suggestion-message') ?? raise('SuggestionBox: #suggestion-message is missing');
+
+	// A code is only usable if it is exactly four digits. Anything else means the
+	// endpoint did not actually run: astro dev serves public/*.php as static
+	// text, and a host that loses its PHP handler hands back the source file.
+	// Neither is a reason to dump server output into the page.
+	const codePattern = /^\d{4}$/;
+	// Separate from codePattern: this one splits the field into the leading code
+	// and the rest, so it needs capture groups and must not anchor at the end.
+	const splitPattern = /^(\d{4})(.*)$/s;
+	let codesAvailable = false;
+
+	const currentCode = () => codeValue.textContent.trim();
+
+	const reportCodesDown = (why = '') => {
+		codesAvailable = false;
+		codeValue.textContent = '----';
+		codeDisplay.classList.add('hidden');
+		// Console, not the page: this is a deployment problem for us to fix, and
+		// a visitor has nothing to do with it.
+		console.warn(
+			'SuggestionBox: ' + why + '\n' +
+			'/issue-code.php must be executed by PHP. Under `astro dev` it is served ' +
+			'as plain text, so use `npm run dev:php` to exercise the real endpoints.'
+		);
+	};
+
+	// Rewrite the response before htmx touches the DOM. htmx.js re-reads
+	// serverResponse after this event (line 4886), so this is the one place a
+	// bad payload can be stopped rather than cleaned up afterwards.
+	// The instanceof guard narrows Event to CustomEvent, which is what htmx
+	// actually dispatches (htmx.js:3047) and where .detail lives.
+	codeValue.addEventListener('htmx:beforeSwap', function (e) {
+		if (!(e instanceof CustomEvent)) return;
+
+		const text = String(e.detail.serverResponse || '').trim();
+
+		if (codePattern.test(text)) {
+			codesAvailable = true;
+			e.detail.serverResponse = text;
+			return;
+		}
+
+		e.detail.serverResponse = '----';
+		reportCodesDown('no 4-digit code came back (' + text.slice(0, 40) + '...)');
 	});
 
-	// Hide the code display when user clicks away
-	input.addEventListener('blur', function() {
-		// We keep it visible when user is typing to prevent confusion
-		if (!this.value.includes(currentCode)) {
+	codeValue.addEventListener('htmx:responseError', function () {
+		reportCodesDown('the code request failed outright');
+	});
+
+	// Show the code panel. The hint stays up once the visitor has engaged with
+	// the form, since they will need to re-read the code after any rejection.
+	const revealCode = () => {
+		if (codesAvailable) {
+			codeDisplay.classList.remove('hidden');
+		}
+	};
+
+	input.addEventListener('focus', revealCode);
+
+	input.addEventListener('blur', function () {
+		// Stay visible while the typed value still carries the code on front,
+		// so nobody loses it mid-sentence.
+		if (!codesAvailable || !input.value.includes(currentCode())) {
 			codeDisplay.classList.add('hidden');
 		}
 	});
 
-	// Basic validation on form submission - now we let HTMX handle the actual submission
-	form.addEventListener('submit', function(e) {
-		const suggestion = input.value.trim();
+	// A fresh code has just arrived from the server; put it where it can be read.
+	message.addEventListener('htmx:afterSwap', revealCode);
 
-		// Check if the suggestion includes the code at the beginning
-		if (suggestion.startsWith(currentCode)) {
-			// Allow HTMX to handle the submission properly
-			return true;
-		} else {
-			e.preventDefault(); // Stop the form from submitting
-			alert('Please enter the correct 4-digit code at the beginning of your suggestion!');
-			return false;
+	// Defaults rather than annotations: they give the parameters inferred string
+	// types without needing TS syntax.
+	const showMessage = (kind = 'error', heading = '', body = '') => {
+		// Built with textContent throughout, never innerHTML, because body is
+		// unescaped visitor-facing text.
+		const panel = document.createElement('div');
+		panel.className = 'message-box is-' + kind;
+
+		const title = document.createElement('div');
+		title.className = 'message-heading';
+		title.textContent = heading;
+
+		const text = document.createElement('div');
+		text.className = 'message-body';
+
+		const paragraph = document.createElement('p');
+		paragraph.textContent = body;
+		text.appendChild(paragraph);
+
+		panel.append(title, text);
+		message.textContent = '';
+		message.appendChild(panel);
+		revealCode();
+	};
+
+	// htmx refuses to swap a 4xx/5xx at all -- responseHandling is
+	// { code: '[45]..', swap: false, error: true } -- so a server-side failure
+	// looks indistinguishable from "the button does nothing". Surface it.
+	// Scoped to the form's own request because htmx fires this on the
+	// requesting element and the event bubbles (makeEvent: bubbles: true).
+	form.addEventListener('htmx:responseError', function (e) {
+		if (e.target !== form || !(e instanceof CustomEvent)) return;
+
+		const xhr = e.detail && e.detail.xhr;
+		const status = (xhr && xhr.status) || 0;
+		showMessage(
+			'error',
+			'Endpoint Unreachable',
+			'The Bureau asked its own suggestion desk and heard nothing back '
+				+ '(HTTP ' + status + '). Try again in a moment.'
+		);
+	});
+
+	// Same trap one step further: a 200 carrying an EMPTY body does swap, but
+	// swaps in nothing, which is again "nothing happened". This is the case that
+	// silently ate submissions, so refuse it explicitly.
+	message.addEventListener('htmx:beforeSwap', function (e) {
+		if (!(e instanceof CustomEvent)) return;
+		if (String(e.detail.serverResponse || '').trim() !== '') return;
+
+		e.detail.shouldSwap = false;
+		showMessage(
+			'error',
+			'Empty Reply',
+			'The suggestion desk answered with a blank sheet, so nothing was '
+				+ 'recorded. Try again in a moment.'
+		);
+	});
+
+	// Courtesy check, not policy: it saves a round trip on the obvious mistake.
+	// htmx honours preventDefault on htmx:beforeRequest -- triggerEvent returns
+	// dispatchEvent's result and the caller bails before building the XHR --
+	// whereas the same call on the raw submit event is ignored. Either way the
+	// server re-verifies the code against the session and re-checks the URL.
+	form.addEventListener('htmx:beforeRequest', function (e) {
+		// htmx fires this on whichever element made the request, and it bubbles.
+		// #code-value sits inside this form, so its own GET for a fresh code
+		// reaches us here -- and judging it against the form's input killed the
+		// code refresh, leaving a stale or absent code on screen. Only the
+		// form's own submission is ours to vet.
+		if (e.target !== form) return;
+
+		const value = input.value.trim();
+		const split = splitPattern.exec(value);
+		const expected = currentCode();
+
+		// With no live code there is nothing on the server to check against,
+		// so a submission cannot succeed. Say so instead of letting the visitor
+		// guess at a code that does not exist.
+		if (!codesAvailable) {
+			e.preventDefault();
+			showMessage(
+				'error',
+				'Codes Unavailable',
+				'The Bureau cannot hand out a verification code right now, so it has '
+					+ 'no way to check one. Try again in a moment.'
+			);
+			return;
+		}
+
+		if (!split || split[2].trim() === '') {
+			e.preventDefault();
+			showMessage(
+				'error',
+				'Incomplete Suggestion',
+				'Type the 4-digit code, then the whole address, in the same field.'
+			);
+			return;
+		}
+
+		if (/^\d{4}$/.test(expected) && split[1] !== expected) {
+			e.preventDefault();
+			showMessage(
+				'error',
+				'Wrong Code',
+				'That is not the 4-digit code shown above the field. A fresh one appears after every attempt.'
+			);
 		}
 	});
 });

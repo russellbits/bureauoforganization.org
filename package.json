@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:php": "astro build && php -S 127.0.0.1:22118 -t build",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
