@@ -37,7 +37,7 @@ $value = trim((string) ($_POST['suggestion'] ?? ''));
 
 // Split the leading code from the rest. The `s` modifier matters: a newline in
 // the middle of the field must land in $rest so the URL check can see it and
-// strip it, rather than slipping past a pattern that stops at line end.
+// reject it, rather than slipping past a pattern that stops at line end.
 if (!preg_match('/^(\d{4})(.*)$/s', $value, $matches)) {
     suggestion_reject(
         'Incomplete Suggestion',
@@ -49,12 +49,15 @@ if (!preg_match('/^(\d{4})(.*)$/s', $value, $matches)) {
 $code = $matches[1];
 $rest = $matches[2];
 
+// Snapshot before consuming, so a write failure of ours can hand the code back.
+$outstanding = suggestion_snapshot_code();
+
 // Spends the code whether it matches or not, so a rejection cannot be replayed.
 if (!suggestion_consume_code($code)) {
     suggestion_reject(
         'Wrong Code',
         '<p>That code is not the one we handed you, or it has already been used. '
-            . 'A fresh one is waiting above the field.</p>'
+            . 'Click in the field to be shown a fresh one.</p>'
     );
 }
 
@@ -82,13 +85,30 @@ $entry = sprintf(
     $timestamp
 );
 
-$filePath = __DIR__ . '/suggestions.md';
+$filePath = suggestion_store_path();
 
-if (file_put_contents($filePath, $entry, FILE_APPEND | LOCK_EX) === false) {
+// Check writability before attempting the append, so the failure we report names
+// the real problem instead of a generic permissions guess. The path itself goes
+// to the error log, never to the browser.
+if (!is_writable(dirname($filePath))) {
+    error_log('[suggestions] store directory not writable: ' . dirname($filePath));
+    // The code was good and the suggestion was fine; this is our fault, so do
+    // not make them retype it.
+    suggestion_restore_code($outstanding);
     suggestion_reject(
         'Disk Trouble',
-        '<p>We could not write your suggestion to disk. Check the folder\'s '
-            . 'write permissions.</p>'
+        '<p>The recording office is closed. We could not reach the suggestion '
+            . 'store, so nothing was filed. Try again in a moment.</p>'
+    );
+}
+
+if (file_put_contents($filePath, $entry, FILE_APPEND | LOCK_EX) === false) {
+    error_log('[suggestions] append failed: ' . $filePath);
+    suggestion_restore_code($outstanding);
+    suggestion_reject(
+        'Disk Trouble',
+        '<p>We could not write your suggestion to disk. Check the store\'s '
+            . 'write permissions. Nothing was filed.</p>'
     );
 }
 

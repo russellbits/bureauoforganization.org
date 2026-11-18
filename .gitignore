@@ -3,6 +3,10 @@ build/
 # Default build output
 dist/
 
+# suggestion box runtime data: lives outside the web root so builds and deploys
+# cannot truncate it (see suggestion_store_path in public/suggestion-common.php)
+/suggestions.md
+
 # generated types
 .astro/
 

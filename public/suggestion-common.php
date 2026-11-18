@@ -21,6 +21,30 @@ const SUGGESTION_MAX_URL_BYTES = 2048;
 /** Session key holding the outstanding code. */
 const SUGGESTION_SESSION_KEY = 'suggestion_code';
 
+/**
+ * Where suggestions are recorded.
+ *
+ * Deliberately OUTSIDE the web root. Everything in public/ is re-copied into
+ * the build directory on every `astro build`, so a data file kept there is
+ * truncated to its empty seed contents on each build -- and `npm run deploy`
+ * then pushes that empty copy over the live file. One level up is the project
+ * root locally and the account root on the host, both writable and neither
+ * served.
+ *
+ * Set SUGGESTION_STORE in the environment if the host layout differs.
+ *
+ * @return string absolute path to the data file
+ */
+function suggestion_store_path(): string
+{
+    $configured = getenv('SUGGESTION_STORE');
+    if (is_string($configured) && $configured !== '') {
+        return $configured;
+    }
+
+    return dirname(__DIR__) . '/suggestions.md';
+}
+
 function suggestion_session_start(): bool
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
@@ -78,6 +102,43 @@ function suggestion_consume_code(string $candidate): bool
     // Timing-safe: a fixed-length numeric compare is not where we want to be
     // clever in hindsight.
     return hash_equals($stored, $candidate);
+}
+
+/**
+ * Snapshot the outstanding code, so a server-side failure can hand it back.
+ *
+ * @return array{code: string, at: int}|null null when nothing was outstanding
+ */
+function suggestion_snapshot_code(): ?array
+{
+    if (!isset($_SESSION[SUGGESTION_SESSION_KEY])) {
+        return null;
+    }
+
+    return [
+        'code' => (string) $_SESSION[SUGGESTION_SESSION_KEY],
+        'at'   => (int) ($_SESSION['suggestion_code_at'] ?? 0),
+    ];
+}
+
+/**
+ * Put a verified code back after WE failed to file the suggestion.
+ *
+ * Spend-on-attempt is right for a visitor's own mistake -- a wrong code or a
+ * bad URL should not be replayable. But when the disk refuses a suggestion that
+ * already passed every check, burning the code would force them to retype the
+ * whole thing for a fault that is ours, not theirs.
+ *
+ * @param array{code: string, at: int}|null $snapshot
+ */
+function suggestion_restore_code(?array $snapshot): void
+{
+    if ($snapshot === null) {
+        return;
+    }
+
+    $_SESSION[SUGGESTION_SESSION_KEY] = $snapshot['code'];
+    $_SESSION['suggestion_code_at']   = $snapshot['at'];
 }
 
 /**

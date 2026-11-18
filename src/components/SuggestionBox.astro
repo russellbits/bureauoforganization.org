@@ -304,26 +304,36 @@ document.addEventListener('DOMContentLoaded', function () {
 		reportCodesDown('the code request failed outright');
 	});
 
-	// Show the code panel. The hint stays up once the visitor has engaged with
-	// the form, since they will need to re-read the code after any rejection.
+	// The code panel floats over the message area (top: -130px, z-index: 100), so
+	// the two must never be on screen together: it appears when the field is
+	// focused and goes away on submit and whenever a reply is showing.
 	const revealCode = () => {
 		if (codesAvailable) {
 			codeDisplay.classList.remove('hidden');
 		}
 	};
 
+	const concealCode = () => {
+		codeDisplay.classList.add('hidden');
+	};
+
 	input.addEventListener('focus', revealCode);
+
+	// htmx preventDefaults this event but every listener still runs, so hiding
+	// here is reliable. It fires before the request goes out, which is what we
+	// want: the moment the button is pressed, the panel is gone.
+	form.addEventListener('submit', concealCode);
 
 	input.addEventListener('blur', function () {
 		// Stay visible while the typed value still carries the code on front,
 		// so nobody loses it mid-sentence.
 		if (!codesAvailable || !input.value.includes(currentCode())) {
-			codeDisplay.classList.add('hidden');
+			concealCode();
 		}
 	});
 
-	// A fresh code has just arrived from the server; put it where it can be read.
-	message.addEventListener('htmx:afterSwap', revealCode);
+	// A reply has landed; clear the panel so the message is readable.
+	message.addEventListener('htmx:afterSwap', concealCode);
 
 	// Defaults rather than annotations: they give the parameters inferred string
 	// types without needing TS syntax.
@@ -347,7 +357,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		panel.append(title, text);
 		message.textContent = '';
 		message.appendChild(panel);
-		revealCode();
+		// The message occupies the space the panel floats in.
+		concealCode();
 	};
 
 	// htmx refuses to swap a 4xx/5xx at all -- responseHandling is
@@ -430,7 +441,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			showMessage(
 				'error',
 				'Wrong Code',
-				'That is not the 4-digit code shown above the field. A fresh one appears after every attempt.'
+				'That is not the 4-digit code we gave you. Click in the field to be '
+					+ 'shown a fresh one.'
 			);
 		}
 	});
