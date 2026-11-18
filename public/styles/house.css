@@ -8,8 +8,8 @@ body {
 
 #masonry-grid {
     position: relative;
-    margin-left: 20px;
-    width: 100%;
+    margin: 20px auto;
+    width: 90vw;
 }
 
 .card {
