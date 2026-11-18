@@ -8,25 +8,52 @@ const newsLink = links.find(item => item.id === 'news');
 const yahoosLink = links.find(item => item.id === 'moreyahoos');
 ---
 <div class="logo-area">
-    <img src="/images/banner-small.jpg" width="884" height="198" alt="Bureau of Organization" usemap="#image-map"/>
+    <img src="/images/banner-small.jpg" width="880" height="198" alt="Bureau of Organization" usemap="#header-image"/>
 </div>
 
-<map name="image-map">
+<!-- Area coords are x,y pairs against banner-small.jpg (880x198), the image the
+     <img> above actually loads, with rect given as left,top,right,bottom.
+     banner.jpg is 1264x284, so coords carried over from it need a 0.696 x 0.697
+     scale. The overlay in @scripts/imagemap_overlay.js (loaded by Layout) draws
+     these areas on top of the banner so a mismatch is visible instead of
+     silent; set `image_map: 1` in src/scripts/bureau_config.js to draw them. -->
+<map name="header-image">
     <area
         alt={newLink.data.description}
         title={newLink.data.description}
         href={newLink.data.url}
-        coords="0,226,125,63"
-        shape="rect"
+        coords="0,158,87,44" shape="rect"
     />
-    <area alt={coolLink.data.description} title={coolLink.data.description} href={coolLink.data.url} coords="150,63,284,236" shape="rect">
-    <area alt="Home Page" title="Home Page" href="/" coords="641,197,205,-1" shape="rect">
-    <area alt={newsLink.data.description} title={newsLink.data.description} href={newsLink.data.url} coords="929,49,1102,243" shape="rect">
-    <area alt={yahoosLink.data.description} title={yahoosLink.data.description} href={yahoosLink.data.url} coords="1110,50,1263,245" shape="rect">
+    <area
+        alt={coolLink.data.description}
+        title={coolLink.data.description}
+        href={coolLink.data.url}
+        coords="104,44,198,165" shape="rect"
+    />
+    <area
+        alt="Home Page"
+        title="Home Page"
+        href="/"
+        coords="206,17,643,180" shape="rect"
+    />
+    <area
+        alt={newsLink.data.description}
+        title={newsLink.data.description}
+        href={newsLink.data.url}
+        coords="647,34,767,169" shape="rect"
+    />
+    <area
+        alt={yahoosLink.data.description}
+        title={yahoosLink.data.description}
+        href={yahoosLink.data.url}
+        coords="773,35,879,171" shape="rect"
+    />
 </map>
 
 <style>
 .logo-area {
+    /* Gives the overlay a stable anchor so it never has to set one itself. */
+    position: relative;
     width: 100vw;
     text-align: center;
 }

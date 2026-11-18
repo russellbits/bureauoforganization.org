@@ -22,6 +22,13 @@ import { SITE_INFO } from "@scripts/bureau_config.js";
         <slot name="head" />
         <!-- HTMX -->
         <script src="https://unpkg.com/htmx.org@2.0.10"></script>
+        <!-- Dev aid: draws every <area> in every <img usemap> on the page as a
+             translucent orange overlay. Kept off by `image_map: 0` in
+             @scripts/bureau_config.js; flip that to 1 to enable it everywhere.
+             Import it in any layout or component. -->
+        <script>
+            import '@scripts/imagemap_overlay.js';
+        </script>
 	</head>
 	<body>
 	<TippyTopNav />
