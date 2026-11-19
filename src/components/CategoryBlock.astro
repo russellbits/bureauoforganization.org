@@ -14,7 +14,7 @@ interface Props {
 const { category } = Astro.props;
 ---
 
-<div>
+<div class="card-link-list">
   <h2>
     <a href={category.url}>{category.name}</a>
   </h2>
@@ -32,6 +32,11 @@ const { category } = Astro.props;
 </div>
 
 <style>
+.card-link-list h2 {
+    display: block;
+    padding: 10px;
+}
+
   h2 a {
     color: #1e293b;
     text-decoration: none;

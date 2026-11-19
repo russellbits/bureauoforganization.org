@@ -24,7 +24,7 @@ body {
 .card {
     position: absolute;
     background-color: #bdbdbd;
-    padding: 0 1rem;
+    /*padding: 0 1rem;*/
     margin: 20px 0;
     border: 1px dotted gray;
     box-shadow: 14px 15px 0px 0px rgba(96, 96, 96, 1.00);
